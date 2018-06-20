@@ -15,11 +15,11 @@ function main() {
   const ctx = canvas.getContext('2d');
   app.appendChild(canvas);
   drawBackground(ctx);
-  animate(makeCircles(ctx, 5), ctx)();
+  animate(makeCircles(ctx, 10), ctx)();
 }
 
 function drawBackground(ctx) {
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = 'green';
   ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 }
 
@@ -65,7 +65,6 @@ function makeCircles(ctx, number) {
       color
     );
     circles.push(circle);
-    console.log(circles);
   }
   return circles;
 }

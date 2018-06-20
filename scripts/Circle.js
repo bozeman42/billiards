@@ -11,9 +11,13 @@ export default class Circle {
   }
   draw() {
     this.ctx.beginPath();
-    this.ctx.arc(this.pos.x,this.pos.y,this.radius,0,2*Math.PI);
+    this.ctx.strokeStyle = "black"
     this.ctx.fillStyle = this.color;
+    this.ctx.arc(this.pos.x,this.pos.y,this.radius,0,2*Math.PI);
+    this.ctx.shadowStyle = 'black';
+    this.ctx.shadowBlur = 25;
     this.ctx.fill();
+    this.ctx.stroke();
     this.ctx.beginPath();
     // this.ctx.fillStyle = "white";
     // this.ctx.font = "50px Arial";
@@ -35,7 +39,7 @@ export default class Circle {
       sound.play();
       let normal1 = dist1.projectionOf(this.vel);
       let normal2 = dist2.projectionOf(circle.vel)
-      console.log('vel1',this.vel,'normal1:',normal1,'vel2',circle.vel,"normal2:",normal2);
+      // console.log('vel1',this.vel,'normal1:',normal1,'vel2',circle.vel,"normal2:",normal2);
       this.vel.x += normal2.x - normal1.x;
       this.vel.y += normal2.y - normal1.y;
       circle.vel.x += normal1.x - normal2.x;

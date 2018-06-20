@@ -6,12 +6,15 @@ export default class Circle {
     this.pos = new Vec2(x,y);
     this.vel = new Vec2(vx, vy)
     this.radius = radius;
+    this.c1 = `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
+    this.c2 = `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
     this.color = color;
   }
   draw() {
     this.ctx.beginPath();
     this.ctx.arc(this.pos.x,this.pos.y,this.radius,0,2*Math.PI);
     this.ctx.fillStyle = this.color;
+    // this.ctx.fillStyle = randomColor();
     this.ctx.fill();
     // this.ctx.fillStyle = 'white';
     // this.ctx.font = "10px Arial";
@@ -32,24 +35,34 @@ export default class Circle {
   }
 
   update() {
-    const dampening = .8;
-    const friction = 0.07;
+    const dampening = 0.95; // 0.8 recommended
+    const friction = .071; // 0.07 recommended
     this.pos.x += this.vel.x;
+    let xOverlap;
     if (this.vel.x > 0 && this.pos.x > window.innerWidth - this.radius) {
+      xOverlap = this.pos.x + this.radius - window.innerWidth;
+      this.pos.x -= 2 * xOverlap;
       this.vel.x = -this.vel.x;
       this.vel.x = this.vel.x * dampening;
       this.vel.y = this.vel.y * dampening;
     } else if (this.vel.x < 0 && this.pos.x < this.radius) {
+      xOverlap = this.pos.x - this.radius;
+      this.pos.x -= 2 * xOverlap;
       this.vel.x = -this.vel.x;
       this.vel.x = this.vel.x * dampening;
       this.vel.y = this.vel.y * dampening;
     }
     this.pos.y += this.vel.y;
+    let yOverlap = this.pos.y - this.radius
     if (this.vel.y > 0 && this.pos.y > window.innerHeight - this.radius) {
+      yOverlap = this.pos.y + this.radius - window.innerHeight;
+      this.pos.y -= 2 * yOverlap;
       this.vel.y = -this.vel.y;
       this.vel.x = this.vel.x * dampening;
       this.vel.y = this.vel.y * dampening;
     } else if (this.vel.y < 0 && this.pos.y < this.radius) {
+      yOverlap = this.pos.y - this.radius
+      this.pos.y -= 2 * yOverlap;
       this.vel.y = -this.vel.y;
       this.vel.x = this.vel.x * dampening;
       this.vel.y = this.vel.y * dampening;
@@ -63,4 +76,8 @@ export default class Circle {
     }
     this.draw();
   }
+}
+
+function randomColor() {
+  return `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
 }

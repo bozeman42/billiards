@@ -9,7 +9,7 @@ function main() {
   const ctx = canvas.getContext('2d');
   app.appendChild(canvas);
   drawBackground(ctx);
-  animate(makeCircles(ctx,130),ctx)();
+  animate(makeCircles(ctx,200),ctx)();
 }
 
 function drawBackground(ctx) {
@@ -23,24 +23,35 @@ function animate(things,ctx) {
     things.forEach(thing => {
       thing.update();
     })
-    requestAnimationFrame(animate(things,ctx));
+    // window.addEventListener('click',(event) => {
+      requestAnimationFrame(animate(things,ctx));
+    // },{once: true});
   }
 }
 
 function makeCircles(ctx,number) {
   let circles = [];
   for(let i = 0; i < number; i++) {
+    const xPos = 100 + Math.random() * 1500;
+    const yPos = 100 + Math.random() * 1000;
+    const xVel = -50 + Math.random() * 100;
+    const yVel = -50 + Math.random() * 100;
+    const color = `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
     let circle = new Circle(
       ctx,
-      100 + Math.random() * 1500,
-      100 + Math.random() * 1000,
-      -50 + Math.random() * 100,
-      -50 + Math.random() * 100,
-      50,
-      `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
+      xPos,
+      yPos,
+      xVel,
+      yVel,
+      100 * Math.random(),
+      color
     );
     circles.push(circle);
     console.log(circles);
   }
   return circles;
+}
+
+function randomColor() {
+  return `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
 }

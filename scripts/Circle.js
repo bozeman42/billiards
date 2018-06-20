@@ -1,4 +1,5 @@
 import { Vec2 } from './math.js';
+import { vec2Subtraction } from './math.js';
 
 export default class Circle {
   constructor(ctx,x,y,vx,vy,radius,color) {
@@ -27,16 +28,23 @@ export default class Circle {
 
   // implement circle collision here?
   collide(circle) {
-    const x = circle.pos.x - this.pos.x;
-    const y = circle.pos.y - this.pos.y;
-    const dist = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
-    if (dist < circle.radius + this.radius) {
-      console.alert('Collision!');
+    let dist2 = vec2Subtraction(this.pos, circle.pos);
+    let dist1 = vec2Subtraction(circle.pos,this.pos)
+    if (dist1.length < circle.radius + this.radius) {
+      const sound = new Audio(`../assets/hit${Math.floor(Math.random() * 10)}.mp3`);
+      sound.play();
+      let normal1 = dist1.projectionOf(this.vel);
+      let normal2 = dist2.projectionOf(circle.vel)
+      console.log('vel1',this.vel,'normal1:',normal1,'vel2',circle.vel,"normal2:",normal2);
+      this.vel.x += normal2.x - normal1.x;
+      this.vel.y += normal2.y - normal1.y;
+      circle.vel.x += normal1.x - normal2.x;
+      circle.vel.y += normal1.y - normal2.y;
     }
   }
 
   update() {
-    const dampening = 0.95; // 0.8 recommended
+    const dampening = 0.85; // 0.8 recommended
     const friction = .071; // 0.07 recommended
     this.pos.x += this.vel.x;
     let xOverlap;

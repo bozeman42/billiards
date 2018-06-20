@@ -14,9 +14,9 @@ export default class Circle {
     this.ctx.fillStyle = this.color;
     this.ctx.fill();
     this.ctx.beginPath();
-    this.ctx.fillStyle = 'white';
-    this.ctx.font = "50px Arial";
-    this.ctx.fillText(`Speed: ${Math.sqrt(Math.pow(this.vel.x,2) + Math.pow(this.vel.y,2))}`,this.pos.x - 15, this.pos.y + 10);
+    // this.ctx.fillStyle = "white";
+    // this.ctx.font = "50px Arial";
+    // this.ctx.fillText(`Speed: ${Math.sqrt(Math.pow(this.vel.x,2) + Math.pow(this.vel.y,2))}`,this.pos.x - 15, this.pos.y + 10);
     this.ctx.beginPath();
     this.ctx.strokeStyle= 'white';
     this.ctx.moveTo(this.pos.x,this.pos.y);

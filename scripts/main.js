@@ -36,8 +36,8 @@ function makeCircles(ctx,number) {
     const yPos = 100 + Math.random() * 1000;
     const xVel = -50 + Math.random() * 100;
     const yVel = -50 + Math.random() * 100;
-    // const color = `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
-    const color = `red`;
+    const color = randomColor();
+    // const color = `red`;
     let circle = new Circle(
       ctx,
       xPos,

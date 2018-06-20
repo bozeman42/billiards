@@ -9,7 +9,7 @@ function main() {
   const ctx = canvas.getContext('2d');
   app.appendChild(canvas);
   drawBackground(ctx);
-  animate(makeCircles(ctx,200),ctx)();
+  animate(makeCircles(ctx,10),ctx)();
 }
 
 function drawBackground(ctx) {

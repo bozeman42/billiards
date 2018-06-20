@@ -8,7 +8,7 @@ function main() {
   canvas.width= window.innerWidth;
   const ctx = canvas.getContext('2d');
   app.appendChild(canvas);
-  drawBackground(ctx);
+  // drawBackground(ctx);
   animate(makeCircles(ctx,10),ctx)();
 }
 

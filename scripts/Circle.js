@@ -14,19 +14,17 @@ export default class Circle {
     this.ctx.strokeStyle = "black"
     this.ctx.fillStyle = this.color;
     this.ctx.arc(this.pos.x,this.pos.y,this.radius,0,2*Math.PI);
-    this.ctx.shadowStyle = 'black';
-    this.ctx.shadowBlur = 25;
     this.ctx.fill();
     this.ctx.stroke();
-    this.ctx.beginPath();
+    // this.ctx.beginPath();
     // this.ctx.fillStyle = "white";
     // this.ctx.font = "50px Arial";
     // this.ctx.fillText(`Speed: ${Math.sqrt(Math.pow(this.vel.x,2) + Math.pow(this.vel.y,2))}`,this.pos.x - 15, this.pos.y + 10);
-    this.ctx.beginPath();
-    this.ctx.strokeStyle= 'white';
-    this.ctx.moveTo(this.pos.x,this.pos.y);
-    this.ctx.lineTo(this.pos.x + this.vel.x * 10,this.pos.y + this.vel.y * 10);
-    this.ctx.stroke();
+    // this.ctx.beginPath();
+    // this.ctx.strokeStyle= 'white';
+    // this.ctx.moveTo(this.pos.x,this.pos.y);
+    // this.ctx.lineTo(this.pos.x + this.vel.x * 10,this.pos.y + this.vel.y * 10);
+    // this.ctx.stroke();
   }
 
 
@@ -48,7 +46,7 @@ export default class Circle {
   }
 
   update() {
-    const dampening = 0.85; // 0.8 recommended
+    const dampening = 0.95; // 0.8 recommended
     const friction = .071; // 0.07 recommended
     this.pos.x += this.vel.x;
     let xOverlap;

@@ -33,7 +33,7 @@ export default class Circle {
 
   update() {
     const dampening = .8;
-    const friction = 0.07
+    const friction = 0.07;
     this.pos.x += this.vel.x;
     if (this.vel.x > 0 && this.pos.x > window.innerWidth - this.radius) {
       this.vel.x = -this.vel.x;

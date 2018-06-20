@@ -9,25 +9,7 @@ function main() {
   const ctx = canvas.getContext('2d');
   app.appendChild(canvas);
   drawBackground(ctx);
-  let circle = new Circle(
-    ctx,
-    100 + Math.random() * 1500,
-    100 + Math.random() * 1000,
-    -50 + Math.random() * 100,
-    -50 + Math.random() * 100,
-    50,
-    `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
-  );
-  let circle2 = new Circle(
-    ctx,100 + Math.random() * 1500,
-    100 + Math.random() * 1000,
-    -100 + Math.random() * 200,
-    -100 + Math.random() * 200,
-    50,
-    `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
-  );
-  let circles = [circle,circle2];
-  animate(circles,ctx)();
+  animate(makeCircles(ctx,130),ctx)();
 }
 
 function drawBackground(ctx) {
@@ -45,4 +27,20 @@ function animate(things,ctx) {
   }
 }
 
-
+function makeCircles(ctx,number) {
+  let circles = [];
+  for(let i = 0; i < number; i++) {
+    let circle = new Circle(
+      ctx,
+      100 + Math.random() * 1500,
+      100 + Math.random() * 1000,
+      -50 + Math.random() * 100,
+      -50 + Math.random() * 100,
+      50,
+      `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
+    );
+    circles.push(circle);
+    console.log(circles);
+  }
+  return circles;
+}

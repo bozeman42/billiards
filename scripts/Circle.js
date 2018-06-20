@@ -6,18 +6,17 @@ export default class Circle {
     this.pos = new Vec2(x,y);
     this.vel = new Vec2(vx, vy)
     this.radius = radius;
-    this.c1 = `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
-    this.c2 = `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
     this.color = color;
   }
   draw() {
     this.ctx.beginPath();
     this.ctx.arc(this.pos.x,this.pos.y,this.radius,0,2*Math.PI);
     this.ctx.fillStyle = this.color;
-    // this.ctx.fillStyle = randomColor();
     this.ctx.fill();
-    // this.ctx.fillStyle = 'white';
-    // this.ctx.font = "10px Arial";
+    this.ctx.beginPath();
+    this.ctx.fillStyle = 'white';
+    this.ctx.font = "50px Arial";
+    this.ctx.fillText(`Speed: ${Math.sqrt(Math.pow(this.vel.x,2) + Math.pow(this.vel.y,2))}`,this.pos.x - 15, this.pos.y + 10);
     this.ctx.beginPath();
     this.ctx.strokeStyle= 'white';
     this.ctx.moveTo(this.pos.x,this.pos.y);
@@ -25,6 +24,8 @@ export default class Circle {
     this.ctx.stroke();
   }
 
+
+  // implement circle collision here?
   collide(circle) {
     const x = circle.pos.x - this.pos.x;
     const y = circle.pos.y - this.pos.y;

@@ -8,7 +8,7 @@ function main() {
   canvas.width= window.innerWidth;
   const ctx = canvas.getContext('2d');
   app.appendChild(canvas);
-  // drawBackground(ctx);
+  drawBackground(ctx);
   animate(makeCircles(ctx,10),ctx)();
 }
 
@@ -19,7 +19,7 @@ function drawBackground(ctx) {
 
 function animate(things,ctx) {
   return function (timestamp) {
-    // drawBackground(ctx);
+    drawBackground(ctx);
     things.forEach(thing => {
       thing.update();
     })
@@ -36,7 +36,8 @@ function makeCircles(ctx,number) {
     const yPos = 100 + Math.random() * 1000;
     const xVel = -50 + Math.random() * 100;
     const yVel = -50 + Math.random() * 100;
-    const color = `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
+    // const color = `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
+    const color = `red`;
     let circle = new Circle(
       ctx,
       xPos,

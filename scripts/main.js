@@ -19,7 +19,7 @@ function drawBackground(ctx) {
 
 function animate(things,ctx) {
   return function (timestamp) {
-    drawBackground(ctx);
+    // drawBackground(ctx);
     things.forEach(thing => {
       thing.update();
     })

@@ -13,8 +13,8 @@ function main() {
     ctx,
     100 + Math.random() * 1500,
     100 + Math.random() * 1000,
-    -100 + Math.random() * 200,
-    -100 + Math.random() * 200,
+    -50 + Math.random() * 100,
+    -50 + Math.random() * 100,
     50,
     `RGB(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
   );

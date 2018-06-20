@@ -13,6 +13,13 @@ export default class Circle {
     this.ctx.arc(this.pos.x,this.pos.y,this.radius,0,2*Math.PI);
     this.ctx.fillStyle = this.color;
     this.ctx.fill();
+    // this.ctx.fillStyle = 'white';
+    // this.ctx.font = "10px Arial";
+    this.ctx.beginPath();
+    this.ctx.strokeStyle= 'white';
+    this.ctx.moveTo(this.pos.x,this.pos.y);
+    this.ctx.lineTo(this.pos.x + this.vel.x * 10,this.pos.y + this.vel.y * 10);
+    this.ctx.stroke();
   }
 
   collide(circle) {

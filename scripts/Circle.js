@@ -29,14 +29,16 @@ export default class Circle {
 
 
   // implement circle collision here?
-  collide(circle) {
+  collide(ctx,circle) {
     let dist2 = vec2Subtraction(this.pos, circle.pos);
     let dist1 = vec2Subtraction(circle.pos,this.pos)
+    let min = circle.radius + this.radius;
     if (dist1.length < circle.radius + this.radius) {
+      console.log("dist:",dist1.length,"min:",min);
       const sound = new Audio(`../assets/hit${Math.floor(Math.random() * 10)}.mp3`);
       sound.play();
       let normal1 = dist1.projectionOf(this.vel);
-      let normal2 = dist2.projectionOf(circle.vel)
+      let normal2 = dist2.projectionOf(circle.vel);
       // console.log('vel1',this.vel,'normal1:',normal1,'vel2',circle.vel,"normal2:",normal2);
       this.vel.x += normal2.x - normal1.x;
       this.vel.y += normal2.y - normal1.y;

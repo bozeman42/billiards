@@ -31,7 +31,7 @@ function animate(things, ctx) {
     })
     things.forEach((thing, index, arr) => {
       for (let i = index+1; i < arr.length; i++){
-        thing.collide(arr[i]);
+        thing.collide(ctx,arr[i]);
       }
     })
     // window.addEventListener('click',(event) => {

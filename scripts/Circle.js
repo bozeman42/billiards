@@ -44,6 +44,7 @@ export default class Circle {
       this.vel.y += normal2.y - normal1.y;
       circle.vel.x += normal1.x - normal2.x;
       circle.vel.y += normal1.y - normal2.y;
+      
     }
   }
 
@@ -52,13 +53,16 @@ export default class Circle {
     const friction = .071; // 0.07 recommended
     this.pos.x += this.vel.x;
     let xOverlap;
+    let collision = false;
     if (this.vel.x > 0 && this.pos.x > window.innerWidth - this.radius) {
+      collision = true;
       xOverlap = this.pos.x + this.radius - window.innerWidth;
       this.pos.x -= 2 * xOverlap;
       this.vel.x = -this.vel.x;
       this.vel.x = this.vel.x * dampening;
       this.vel.y = this.vel.y * dampening;
     } else if (this.vel.x < 0 && this.pos.x < this.radius) {
+      collision = true;
       xOverlap = this.pos.x - this.radius;
       this.pos.x -= 2 * xOverlap;
       this.vel.x = -this.vel.x;
@@ -68,17 +72,23 @@ export default class Circle {
     this.pos.y += this.vel.y;
     let yOverlap = this.pos.y - this.radius
     if (this.vel.y > 0 && this.pos.y > window.innerHeight - this.radius) {
+      collision = true;
       yOverlap = this.pos.y + this.radius - window.innerHeight;
       this.pos.y -= 2 * yOverlap;
       this.vel.y = -this.vel.y;
       this.vel.x = this.vel.x * dampening;
       this.vel.y = this.vel.y * dampening;
     } else if (this.vel.y < 0 && this.pos.y < this.radius) {
+      collision = true;
       yOverlap = this.pos.y - this.radius
       this.pos.y -= 2 * yOverlap;
       this.vel.y = -this.vel.y;
       this.vel.x = this.vel.x * dampening;
       this.vel.y = this.vel.y * dampening;
+    }
+    if (collision) {
+      const sound = new Audio(`../assets/wall${Math.floor(Math.random() * 4)}.mp3`);
+      sound.play();
     }
     let speed = Math.sqrt(Math.pow(this.vel.x,2) + Math.pow(this.vel.y,2));
     this.vel.x -= (friction * this.vel.x / speed);

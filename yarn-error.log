@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js start
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js startr
 
 PATH: 
   H:\Default Folders\Downloads\cmder\bin;H:\Default Folders\Downloads\cmder\vendor\conemu-maximus5\ConEmu\Scripts;H:\Default Folders\Downloads\cmder\vendor\conemu-maximus5;H:\Default Folders\Downloads\cmder\vendor\conemu-maximus5\ConEmu;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\tools\ruby24\bin;C:\tools\ruby25\bin;C:\ProgramData\Oracle\Java\javapath;C:\Python33\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Calibre2\;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\Aaron\AppData\Local\GitHub\PortableGit_63435a79518b44808827aa3194b76bea96231189\cmd;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\PostgreSQL\pg96\bin;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Brackets\command;C:\ProgramData\chocolatey\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\Users\Aaron\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Aaron\AppData\Local\Programs\Python\Python36-32\;C:\Ruby24-x64\bin;C:\RailsInstaller\Git\cmd;C:\RailsInstaller\Ruby2.3.0\bin;C:\Users\Aaron\AppData\Local\Microsoft\WindowsApps;C:\Users\Aaron\AppData\Local\GitHubDesktop\bin;C:\Users\Aaron\AppData\Local\Programs\EmEditor;C:\Users\Aaron\AppData\Local\atom\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\Aaron\AppData\Local\GitHub\PortableGit_63435a79518b44808827aa3194b76bea96231189\cmd\git.exe;C:\Program Files\PostgreSQL\9.6\bin;C:\Program Files\Heroku\bin;C:\Users\Aaron\AppData\Local\Microsoft\WindowsApps;C:\Users\Aaron\AppData\Local\Yarn\bin;C:\Program Files\Java\jdk1.8.0_171\bin;C:\Users\Aaron\AppData\Roaming\npm;C:\Users\Aaron\AppData\Local\GitHub\PortableGit_63435a79518b44808827aa3194b76bea96231189\usr\bin;C:\Users\Aaron\AppData\Local\GitHub\PortableGit_63435a79518b44808827aa3194b76bea96231189\usr\share\vim\vim74;H:\Default Folders\Downloads\cmder\
@@ -21,6 +21,9 @@ npm manifest:
     "license": "MIT",
     "dependencies": {
       "serve": "^9.1.0"
+    },
+    "scripts": {
+      "start": "serve ./"
     }
   }
 
@@ -441,7 +444,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
 
 Trace: 
-  Error: Command "start" not found.
+  Error: Command "startr" not found. Did you mean "start"?
       at new MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
       at C:\Program Files (x86)\Yarn\lib\cli.js:87307:17
       at Generator.next (<anonymous>)

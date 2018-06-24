@@ -1,7 +1,7 @@
 import Circle from './Circle.js';
 import { vec2Subtraction } from './math.js';
 
-['click','load'].forEach(eventName => {
+['load','click'].forEach(eventName => {
   window.addEventListener(eventName, main);
 });
 function main() {
@@ -15,11 +15,11 @@ function main() {
   const ctx = canvas.getContext('2d');
   app.appendChild(canvas);
   drawBackground(ctx);
-  animate(makeCircles(ctx, 2), ctx)();
+  animate(makeCircles(ctx, 15), ctx)();
 }
 
 function drawBackground(ctx) {
-  ctx.fillStyle = 'green';
+  ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 }
 
@@ -27,12 +27,7 @@ function animate(things, ctx) {
   return function (timestamp) {
     drawBackground(ctx);
     things.forEach(thing => {
-      thing.update();
-    })
-    things.forEach((thing, index, arr) => {
-      for (let i = index+1; i < arr.length; i++){
-        thing.collide(ctx,arr[i]);
-      }
+      thing.update(things);
     })
     // window.addEventListener('click',(event) => {
     requestAnimationFrame(animate(things, ctx));

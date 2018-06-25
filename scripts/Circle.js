@@ -63,12 +63,12 @@ export default class Circle {
     const y1 = this.pos.y;
     const xv1 = this.vel.x;
     const yv1 = this.vel.y;
-    const r1 = this.radius+0.000001;
+    const r1 = this.radius+0.00000000001;
     const x2 = circle.pos.x;
     const y2 = circle.pos.y;
     const xv2 = circle.vel.x;
     const yv2 = circle.vel.y;
-    const r2 = circle.radius+0.000001;
+    const r2 = circle.radius+0.00000000001;
     
     const a = Math.pow(yv1,2) - (2*yv1*yv2) + Math.pow(yv2,2) + Math.pow(xv1,2) - (2*xv1*xv2) + Math.pow(xv2,2);
     const b = 2*(-x2*xv1+x2*xv2+yv1*y1-yv1*y2-yv2*y1+yv2*y2+xv1*x1-xv2*x1);
@@ -139,7 +139,6 @@ export default class Circle {
       sound.play();
     }
     circles.forEach((circle, index, arr) => {
-      let collision = false;
       if (circle !== this) {
         this.collide(circle);
       }

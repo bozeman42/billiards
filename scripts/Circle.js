@@ -53,7 +53,9 @@ export default class Circle {
       this.pos.y += this.vel.y * remainder;
       circle.pos.x += circle.vel.x * remainder;
       circle.pos.y += circle.vel.y * remainder;
+      return true;
     }
+    return false;
   }
 
   rollBackToCollision(circle){
@@ -61,25 +63,27 @@ export default class Circle {
     const y1 = this.pos.y;
     const xv1 = this.vel.x;
     const yv1 = this.vel.y;
-    const r1 = this.radius+1;
+    const r1 = this.radius+0.000001;
     const x2 = circle.pos.x;
     const y2 = circle.pos.y;
     const xv2 = circle.vel.x;
     const yv2 = circle.vel.y;
-    const r2 = circle.radius+1;
+    const r2 = circle.radius+0.000001;
     
     const a = Math.pow(yv1,2) - (2*yv1*yv2) + Math.pow(yv2,2) + Math.pow(xv1,2) - (2*xv1*xv2) + Math.pow(xv2,2);
     const b = 2*(-x2*xv1+x2*xv2+yv1*y1-yv1*y2-yv2*y1+yv2*y2+xv1*x1-xv2*x1);
-    const c = Math.pow(x2,2)-(2*x1*x2)-Math.pow(r1,2)-(2*r2*r2)-Math.pow(r2,2)+Math.pow(x1,2)+Math.pow(y1,2)-(2*y1*y2)+Math.pow(y2,2);
+    const c = Math.pow(x2,2)-(2*x1*x2)-Math.pow(r1,2)-(2*r1*r2)-Math.pow(r2,2)+Math.pow(x1,2)+Math.pow(y1,2)-(2*y1*y2)+Math.pow(y2,2);
     let root = Math.pow(b,2)-4*a*c;
-    let t = ((-b - Math.sqrt(Math.pow(b,2)-4*a*c))/(2*a));
-    let t2 = ((-b + Math.sqrt(Math.pow(b,2)-4*a*c))/(2*a));
+    console.log(root);
+    let t = ((-b - Math.sqrt(root))/(2*a));
+    let t2 = ((-b + Math.sqrt(root))/(2*a));
     if (isNaN(t)) {
-      console.table({x1,y1,xv1,yv1,r1,x2,y2,xv2,yv2,r2,a,b,c,root,t2})
+      console.table({x1,y1,xv1,yv1,speed1:this.vel.length,r1,x2,y2,xv2,yv2,speed2:circle.vel.length,r2,a,b,c,root,t2})
     } 
     t = -Math.abs(t<t2?t:t2);
     this.pos = new Vec2(t*this.vel.x+this.pos.x,t*this.vel.y+this.pos.y);
     circle.pos = new Vec2(t*circle.vel.x+circle.pos.x,t*circle.vel.y+circle.pos.y);
+    console.log('After:',vec2Subtraction(this.pos,circle.pos).length);
     return -t;
   }
 
@@ -135,6 +139,7 @@ export default class Circle {
       sound.play();
     }
     circles.forEach((circle, index, arr) => {
+      let collision = false;
       if (circle !== this) {
         this.collide(circle);
       }

@@ -28,14 +28,13 @@ export default class Circle {
   }
 
 
-  // implement circle collision here?
+  // testing if this circle is colliding with another circle and calculating their new positions and velocities
   collide(circle) {
     let dist2 = vec2Subtraction(this.pos, circle.pos);
     let dist1 = vec2Subtraction(circle.pos,this.pos);
     let min = circle.radius + this.radius;
     if (dist1.length < circle.radius + this.radius) {
       const remainder = this.rollBackToCollision(circle);
-      // console.log('remainder:',remainder)
       console.log("dist:",dist1.length,dist2.length,"min:",min);
 
       const sound = new Audio(`../assets/hit${Math.floor(Math.random() * 10)}.mp3`);
@@ -58,6 +57,10 @@ export default class Circle {
     return false;
   }
 
+  // calculate how much of the last frames movement for this and a colliding circle
+  // to roll back so that their surfaces are touching, not overlapping
+  // roll back that movement, then return the amount of time remaining in the frame
+  // to move at the post-collision velocity
   rollBackToCollision(circle){
     const x1 = this.pos.x;
     const y1 = this.pos.y;

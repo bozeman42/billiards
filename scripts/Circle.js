@@ -16,15 +16,17 @@ export default class Circle {
     this.ctx.arc(this.pos.x,this.pos.y,this.radius,0,2*Math.PI);
     this.ctx.fill();
     this.ctx.stroke();
+
     // this.ctx.beginPath();
     // this.ctx.fillStyle = "white";
     // this.ctx.font = "50px Arial";
-    // this.ctx.fillText(`Speed: ${Math.sqrt(Math.pow(this.vel.x,2) + Math.pow(this.vel.y,2))}`,this.pos.x - 15, this.pos.y + 10);
+    // this.ctx.fillText(`Speed: ${Math.sqrt(Math.pow(this.vel.x,2) + Math.pow(this.vel.y,2)).toFixed(3)}`,this.pos.x - 15, this.pos.y + 10);
     // this.ctx.beginPath();
-    this.ctx.strokeStyle= 'white';
-    this.ctx.moveTo(this.pos.x,this.pos.y);
-    this.ctx.lineTo(this.pos.x + this.vel.x,this.pos.y + this.vel.y);
-    this.ctx.stroke();
+
+    // this.ctx.strokeStyle= 'white';
+    // this.ctx.moveTo(this.pos.x,this.pos.y);
+    // this.ctx.lineTo(this.pos.x + 10*this.vel.x,this.pos.y + 10*this.vel.y);
+    // this.ctx.stroke();
   }
 
 
@@ -84,8 +86,8 @@ export default class Circle {
   }
 
   update(circles) {
-    const dampening = 0.95; // 0.8 recommended
-    const friction = .071; // 0.07 recommended
+    const dampening = 0.8; // 0.8 recommended
+    const friction = 0.04; // 0.07 recommended
     let speed = Math.sqrt(Math.pow(this.vel.x,2) + Math.pow(this.vel.y,2));
     if (speed !== 0){
       this.vel.x -= (friction * this.vel.x / speed);

@@ -1,21 +1,22 @@
 import Circle from './Circle.js';
 import { vec2Subtraction } from './math.js';
 
-['load','click'].forEach(eventName => {
+['click'].forEach(eventName => {
   window.addEventListener(eventName, main);
 });
+const canvas = document.createElement('canvas');
+const app = document.querySelector('#app');
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+const ctx = canvas.getContext('2d');
+app.appendChild(canvas);
+let circles = []
+animate(ctx)()
+
 function main() {
-  const canvas = document.createElement('canvas');
-  const app = document.querySelector('#app');
-      if (app.querySelector('canvas')){
-        app.removeChild(document.querySelector('canvas'));
-      }
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-  const ctx = canvas.getContext('2d');
-  app.appendChild(canvas);
+  circles = []
   drawBackground(ctx);
-  animate(makeCircles(ctx, 15), ctx)();
+  circles = makeCircles(ctx, 15)
 }
 
 function drawBackground(ctx) {
@@ -23,15 +24,13 @@ function drawBackground(ctx) {
   ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 }
 
-function animate(things, ctx) {
+function animate(ctx) {
   return function (timestamp) {
     drawBackground(ctx);
-    things.forEach(thing => {
-      thing.update(things);
+    circles.forEach(thing => {
+      thing.update(circles);
     })
-    // window.addEventListener('click',(event) => {
-    requestAnimationFrame(animate(things, ctx));
-    // },{once: true});
+    requestAnimationFrame(animate(ctx));
   }
 }
 
@@ -39,7 +38,7 @@ function makeCircles(ctx, number) {
   let circles = [];
   for (let i = 0; i < number; i++) {
     // const radius = 100 * Math.random() + 10;
-    const radius = 50;
+    const radius = 10;
     // const xPos = radius + Math.random() * (window.innerWidth - radius);
     // const yPos = radius + Math.random() * (window.innerHeight - radius);
     const xPos = radius + Math.random() * (window.innerWidth - radius);

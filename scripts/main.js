@@ -38,7 +38,7 @@ function makeCircles(ctx, number) {
   let circles = [];
   for (let i = 0; i < number; i++) {
     // const radius = 100 * Math.random() + 10;
-    const radius = 10;
+    const radius = 50;
     // const xPos = radius + Math.random() * (window.innerWidth - radius);
     // const yPos = radius + Math.random() * (window.innerHeight - radius);
     const xPos = radius + Math.random() * (window.innerWidth - radius);
